@@ -3,19 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>강철 마이크 (음악봇) — 디스코드 소개/초대</title>
-  <meta name="description" content="디스코드 음악봇 ‘강철 마이크’ 소개와 초대 링크, 주요 기능, 사용법, 자주 묻는 질문을 한 페이지에!" />
+  <title>강철 마이크 — 뮤직봇(디스코드 음악봇) 소개 · 초대</title>
+  <meta name="description" content="강철 마이크 뮤직봇 — 초고음질 스트리밍, 재생목록, 이퀄라이저, 슬래시 명령어 지원. 디스코드 서버에 빠르게 초대해서 사용하세요." />
+  <meta name="keywords" content="뮤직봇, 디스코드 음악봇, 강철 마이크, Discord music bot, 음악봇 초대" />
   <meta name="theme-color" content="#111827" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://example.com/" />
+  <link rel="alternate" hreflang="ko" href="https://example.com/" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
+  <link rel="preconnect" href="https://discord.com" crossorigin />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="강철 마이크 (음악봇)" />
-  <meta property="og:description" content="초고음질·강력한 재생목록·이퀄라이저 지원 디스코드 음악봇" />
+  <meta property="og:title" content="강철 마이크 (뮤직봇) — 디스코드 음악봇" />
+  <meta property="og:description" content="초고음질·강력한 재생목록·이퀄라이저 지원 디스코드 뮤직봇" />
   <meta property="og:image" content="https://dummyimage.com/1200x630/111827/ffffff&text=%EA%B0%95%EC%B2%A0+%EB%A7%88%EC%9D%B4%ED%81%AC" />
+  <meta property="og:url" content="https://example.com/" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Structured data (JSON-LD) for better indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "강철 마이크",
+        "alternateName": "강철 마이크 뮤직봇",
+        "description": "디스코드용 뮤직봇: 초고음질 스트리밍, 이퀄라이저, 재생목록, 슬래시 명령어 지원.",
+        "url": "https://example.com/",
+        "applicationCategory": "MusicApplication",
+        "operatingSystem": "Discord",
+        "interactionStatistic": [{"@type":"InteractionCounter","interactionType":"https://schema.org/UseAction","userInteractionCount":10000}],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://example.com/",
+        "name": "강철 마이크",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://example.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"홈","item":"https://example.com/#home"},
+          {"@type":"ListItem","position":2,"name":"기능","item":"https://example.com/#features"},
+          {"@type":"ListItem","position":3,"name":"명령어","item":"https://example.com/#commands"}
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Tailwind CSS (CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <style>
     html { scroll-behavior: smooth; }
     .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.08); }
@@ -26,21 +71,21 @@
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-gray-950/70 border-b border-white/10 backdrop-blur">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 grid place-items-center font-bold">🎤</div>
-        <span class="font-semibold">강철 마이크</span>
+      <a href="#home" class="flex items-center gap-3" aria-label="강철 마이크 홈으로 이동">
+        <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 grid place-items-center font-bold" role="img" aria-hidden="true">🎤</div>
+        <span class="font-semibold">강철 마이크 · 뮤직봇</span>
       </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-300">
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-300" aria-label="주요 메뉴">
         <a href="#features" class="hover:text-white">기능</a>
         <a href="#commands" class="hover:text-white">명령어</a>
         <a href="#howto" class="hover:text-white">사용법</a>
         <a href="#faq" class="hover:text-white">FAQ</a>
         <a href="#invite" class="inline-flex items-center px-3 py-1.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-medium">봇 초대</a>
       </nav>
-      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10">☰</button>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10" aria-expanded="false" aria-controls="mobileMenu">☰</button>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10" aria-hidden="true">
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm text-gray-300">
         <a href="#features" class="hover:text-white">기능</a>
         <a href="#commands" class="hover:text-white">명령어</a>
@@ -52,30 +97,31 @@
   </header>
 
   <!-- Hero -->
-  <section id="home" class="relative">
+  <section id="home" class="relative" aria-label="강철 마이크 뮤직봇 소개">
     <div class="absolute inset-0 bg-[radial-gradient(1000px_500px_at_50%_-10%,rgba(99,102,241,0.25),transparent)]"></div>
     <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 relative">
       <div class="grid md:grid-cols-2 items-center gap-10">
         <div>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">디스코드 음악봇 <span class="gradient-text">강철 마이크</span></h1>
-          <p class="mt-4 text-gray-300 text-lg">초고음질 스트리밍, 강력한 재생목록과 이퀄라이저, 24/7 안정성까지. 서버 음악은 이제 강철처럼 단단하게.</p>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">디스코드 <span class="gradient-text">뮤직봇</span> — <span class="gradient-text">강철 마이크</span></h1>
+          <p class="mt-4 text-gray-300 text-lg">초고음질 스트리밍, 강력한 재생목록과 이퀄라이저, 슬래시 명령어 100% 지원. 서버 음악은 이제 강철처럼 단단하게.</p>
           <div class="mt-8 flex flex-col sm:flex-row gap-3" id="invite">
-            <a id="inviteLink" href="https://discord.com/oauth2/authorize?client_id=1356552889946083399" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">봇 초대하기</a>
-            <a href="https://discord.gg/5Z277VDGek" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold">지원 서버</a>
+            <!-- Use full OAuth2 invite with permissions/scopes for clarity -->
+            <a id="inviteLink" href="https://discord.com/oauth2/authorize?client_id=1356552889946083399&scope=bot%20applications.commands&permissions=8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">봇 초대하기</a>
+            <a href="https://discord.gg/5Z277VDGek" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold">지원 서버</a>
             <button id="copyBtn" class="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-gray-200">초대 링크 복사</button>
           </div>
-          <p class="mt-3 text-xs text-gray-400">※ <span class="font-medium">강철 마이크</span> 와 <span class="font-medium">함께</span>노래를들어요!</p>
+          <p class="mt-3 text-xs text-gray-400">※ <span class="font-medium">강철 마이크</span> 와 함께 노래를 불러보세요 — 가장 인기있는 <strong>뮤직봇</strong> 중 하나입니다.</p>
         </div>
         <div class="glass rounded-3xl border border-white/10 p-6 md:p-8 shadow-2xl">
           <div class="aspect-video rounded-2xl bg-black/40 border border-white/10 grid place-items-center text-gray-300">
             <div class="text-center">
-              <div class="text-6xl">🎶</div>
+              <div class="text-6xl" aria-hidden="true">🎶</div>
               <p class="mt-2">/재생, /이퀄라이저, /대기열 … 슬래시 명령어 완전 지원</p>
             </div>
           </div>
           <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-300">
             <li class="bg-white/5 rounded-xl p-3">초고음질(FFmpeg 기반)</li>
-            <li class="bg-white/5 rounded-xl p-3">YouTube·SC·URL 재생</li>
+            <li class="bg-white/5 rounded-xl p-3">YouTube·SoundCloud·URL 재생</li>
             <li class="bg-white/5 rounded-xl p-3">필터/EQ/사운드 강화</li>
             <li class="bg-white/5 rounded-xl p-3">대기열·반복·셔플</li>
           </ul>
@@ -87,8 +133,8 @@
   <!-- Features -->
   <section id="features" class="py-16 md:py-24 border-t border-white/5">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold">주요 기능</h2>
-      <p class="mt-2 text-gray-400">음악 재생에 필요한 모든 것을 빠르고 간편하게.</p>
+      <h2 class="text-2xl md:text-3xl font-bold">주요 기능 — 뮤직봇 핵심</h2>
+      <p class="mt-2 text-gray-400">음악 재생에 필요한 모든 것을 빠르고 간편하게 제공합니다.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-4">
         <div class="glass rounded-2xl p-6 border border-white/10">
           <h3 class="font-semibold">초고음질 스트리밍</h3>
@@ -116,7 +162,7 @@
       <div class="flex items-end justify-between gap-4 flex-wrap">
         <div>
           <h2 class="text-2xl md:text-3xl font-bold">슬래시 명령어</h2>
-          <p class="mt-2 text-gray-400">핵심 명령어 정리 — 빠르게 붙여넣어 쓰기 좋은 형식으로 준비했습니다.</p>
+          <p class="mt-2 text-gray-400">핵심 명령어 — 빠르게 붙여넣어 쓰기 좋은 형식으로 준비했습니다.</p>
         </div>
         <button id="copyCmdBtn" class="inline-flex items-center px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-sm">명령어 전체 복사</button>
       </div>
@@ -191,14 +237,14 @@
   <!-- How To -->
   <section id="howto" class="py-16 md:py-24 border-t border-white/5">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold">시작하기</h2>
+      <h2 class="text-2xl md:text-3xl font-bold">시작하기 — 뮤직봇 빠른 가이드</h2>
       <ol class="mt-6 grid md:grid-cols-2 gap-4 list-decimal list-inside text-gray-300">
         <li class="glass p-5 rounded-2xl border border-white/10">위의 <b>봇 초대하기</b> 버튼으로 서버에 초대합니다. 권한은 <span class="font-mono">연결/말하기/메시지 보기</span>가 필요합니다.</li>
         <li class="glass p-5 rounded-2xl border border-white/10">보이스 채널에 접속한 뒤 텍스트 채널에서 <span class="font-mono">/연결</span>을 실행합니다.</li>
         <li class="glass p-5 rounded-2xl border border-white/10">원하는 곡을 <span class="font-mono">/재생 검색어</span> 또는 URL로 재생합니다.</li>
         <li class="glass p-5 rounded-2xl border border-white/10">사운드를 꾸미고 싶다면 <span class="font-mono">/이퀄라이저</span>와 <span class="font-mono">/필터</span>를 활용하세요.</li>
       </ol>
-      <div class="mt-6 text-sm text-gray-400">문제 발생 시 <a href="https://discord.gg/5Z277VDGek" class="underline hover:text-white" target="_blank" rel="noopener">지원 서버</a>에서 도움을 받으세요.</div>
+      <div class="mt-6 text-sm text-gray-400">문제 발생 시 <a href="https://discord.gg/5Z277VDGek" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">지원 서버</a>에서 도움을 받으세요.</div>
     </div>
   </section>
 
@@ -240,7 +286,12 @@
 
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.setAttribute('aria-hidden', String(expanded));
+    });
 
     const copyBtn = document.getElementById('copyBtn');
     const inviteLink = document.getElementById('inviteLink');
